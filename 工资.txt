@@ -1,0 +1,203 @@
+sunyuxin@ubuntu:~$ sudo mysql -u root -p
+[sudo] password for sunyuxin: 
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.24-0ubuntu0.18.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| hello_mysql        |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.28 sec)
+
+mysql> use hello_mysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> create table p1(id int auto_increment primary key,
+    -> name varchar(30),
+    -> payroll varchar(10));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc p1;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(30) | YES  |     | NULL    |                |
+| payroll | varchar(10) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> create table p2(id int auto_increment primary key, name varchar(30), payroll varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc p2;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(30) | YES  |     | NULL    |                |
+| payroll | varchar(10) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+mysql> insert into p1(id,name,payroll) values(1,"a","1000"),(2,"b","2000"),(3,"c","3000"),(4,"d","4000"),(5,"e","5000"),(6,"f","6000"),(7,"g","7000"),(8,"h","8000"),(9,"i","9000"),(10,"j","10000");
+Query OK, 10 rows affected (0.04 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from p1;
++----+------+---------+
+| id | name | payroll |
++----+------+---------+
+|  1 | a    | 1000    |
+|  2 | b    | 2000    |
+|  3 | c    | 3000    |
+|  4 | d    | 4000    |
+|  5 | e    | 5000    |
+|  6 | f    | 6000    |
+|  7 | g    | 7000    |
+|  8 | h    | 8000    |
+|  9 | i    | 9000    |
+| 10 | j    | 10000   |
++----+------+---------+
+10 rows in set (0.00 sec)
+
+mysql> insert into p2(id,name,payroll) values(1,"aa","1500"),(2,"bb","2500"),(3,"cc","3500"),(4,"dd","4500"),(5,"ee","5500"),(6,"ff","6500"),(7,"gg","7500"),(8,"hh","8500"),(9,"ii","9500"),(10,"jj","15000");
+Query OK, 10 rows affected (0.00 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from p2;
++----+------+---------+
+| id | name | payroll |
++----+------+---------+
+|  1 | aa   | 1500    |
+|  2 | bb   | 2500    |
+|  3 | cc   | 3500    |
+|  4 | dd   | 4500    |
+|  5 | ee   | 5500    |
+|  6 | ff   | 6500    |
+|  7 | gg   | 7500    |
+|  8 | hh   | 8500    |
+|  9 | ii   | 9500    |
+| 10 | jj   | 15000   |
++----+------+---------+
+10 rows in set (0.00 sec)
+
+mysql> select sum(id) from p1;
++---------+
+| sum(id) |
++---------+
+|      55 |
++---------+
+1 row in set (0.90 sec)
+
+mysql> select sum(payroll) from p1;
++--------------+
+| sum(payroll) |
++--------------+
+|        55000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(payroll) from p2;
++--------------+
+| sum(payroll) |
++--------------+
+|        64500 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select max(payroll) from p1;
++--------------+
+| max(payroll) |
++--------------+
+| 9000         |
++--------------+
+1 row in set (0.03 sec)
+
+mysql> select max(payroll) from p2;
++--------------+
+| max(payroll) |
++--------------+
+| 9500         |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select min(payroll) from p1;
++--------------+
+| min(payroll) |
++--------------+
+| 1000         |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select min(payroll) from p2;
++--------------+
+| min(payroll) |
++--------------+
+| 1500         |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from p1 order by payroll desc limit 0,5 ;
++----+------+---------+
+| id | name | payroll |
++----+------+---------+
+|  9 | i    | 9000    |
+|  8 | h    | 8000    |
+|  7 | g    | 7000    |
+|  6 | f    | 6000    |
+|  5 | e    | 5000    |
++----+------+---------+
+5 rows in set (0.00 sec)
+mysql> select * from p1 order by payroll desc limit 5,10 ;
++----+------+---------+
+| id | name | payroll |
++----+------+---------+
+|  4 | d    | 4000    |
+|  3 | c    | 3000    |
+|  2 | b    | 2000    |
+| 10 | j    | 10000   |
+|  1 | a    | 1000    |
++----+------+---------+
+5 rows in set (0.00 sec)
+mysql> select * from p2 order by payroll desc limit 5,10 ;
++----+------+---------+
+| id | name | payroll |
++----+------+---------+
+|  4 | dd   | 4500    |
+|  3 | cc   | 3500    |
+|  2 | bb   | 2500    |
+| 10 | jj   | 15000   |
+|  1 | aa   | 1500    |
++----+------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from p2 order by payroll desc limit 0,5 ;
++----+------+---------+
+| id | name | payroll |
++----+------+---------+
+|  9 | ii   | 9500    |
+|  8 | hh   | 8500    |
+|  7 | gg   | 7500    |
+|  6 | ff   | 6500    |
+|  5 | ee   | 5500    |
++----+------+---------+
+5 rows in set (0.00 sec)
+
