@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>joker</title>
+</head>
+<body>
+
+<b>&lt&ltSympathy for zhe peasants&gt&gt</b>
+<p>Hoeing millet in mid-day heat</p>
+<p>Sweat dripping to the earth beneaht</p>
+<p>Do you know the food on your plate</p>
+<p>Each grain was hard-earned</p>
+<br/>
+
+<br/>
+<b>&lt&ltA Tranquil Night&gt&gt</b>
+<p>Before my bed a pool of light</p>
+<p>Is it hoarfrost up on the groud</p>
+<p>Eyes rasied I see the moon so bright</p>
+<p>Head bent in homesicknesss I'm drowned</p>
+</body>
+</html>
