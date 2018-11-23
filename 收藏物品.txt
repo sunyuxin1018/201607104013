@@ -1,0 +1,55 @@
+mysql> use hello_mysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> create table shoucang(id int auto_increment primary key,
+    -> name varchar(30));
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> desc shoucang;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(30) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into shoucang(id,name) values(1,"yifu"),(2,"xiezi"),(3,"baobao"),(4,"kouhong"),(5,"money");
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from shoucang;
++----+---------+
+| id | name    |
++----+---------+
+|  1 | yifu    |
+|  2 | xiezi   |
+|  3 | baobao  |
+|  4 | kouhong |
+|  5 | money   |
++----+---------+
+5 rows in set (0.00 sec)
+
+mysql> delete from shoucang where name="xiezi";
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from shoucang;
++----+---------+
+| id | name    |
++----+---------+
+|  1 | yifu    |
+|  3 | baobao  |
+|  4 | kouhong |
+|  5 | money   |
++----+---------+
+4 rows in set (0.00 sec)
+mysql> select * from shoucang where name = "baobao";
++----+--------+
+| id | name   |
++----+--------+
+|  3 | baobao |
++----+--------+
+1 row in set (0.00 sec)
+
