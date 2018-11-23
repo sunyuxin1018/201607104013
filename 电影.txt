@@ -1,0 +1,51 @@
+mysql> create table movie(id int auto_increment primary key,
+    -> name varchar(30),
+    -> year int,
+    -> director varchar(20),
+    -> grade int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into movie(id,name,year,director,grade) values(1,"duye",2018,"America",1),(2,"sanshadanaobaolaimu",2009,"india",10);
+Query OK, 2 rows affected (0.49 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from movie;
++----+---------------------+------+----------+-------+
+| id | name                | year | director | grade |
++----+---------------------+------+----------+-------+
+|  1 | duye                | 2018 | America  |     1 |
+|  2 | sanshadanaobaolaimu | 2009 | india    |    10 |
++----+---------------------+------+----------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from movie where name like"%danao%";
++----+---------------------+------+----------+-------+
+| id | name                | year | director | grade |
++----+---------------------+------+----------+-------+
+|  2 | sanshadanaobaolaimu | 2009 | india    |    10 |
++----+---------------------+------+----------+-------+
+1 row in set (0.04 sec)
+mysql> select * from movie where director like"in%";
++----+---------------------+------+----------+-------+
+| id | name                | year | director | grade |
++----+---------------------+------+----------+-------+
+|  2 | sanshadanaobaolaimu | 2009 | india    |    10 |
++----+---------------------+------+----------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from movie where year="2018";
++----+------+------+----------+-------+
+| id | name | year | director | grade |
++----+------+------+----------+-------+
+|  1 | duye | 2018 | America  |     1 |
++----+------+------+----------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from movie where grade in(select max(grade)from movie);
++----+---------------------+------+----------+-------+
+| id | name                | year | director | grade |
++----+---------------------+------+----------+-------+
+|  2 | sanshadanaobaolaimu | 2009 | india    |    10 |
++----+---------------------+------+----------+-------+
+1 row in set (0.00 sec)
+
